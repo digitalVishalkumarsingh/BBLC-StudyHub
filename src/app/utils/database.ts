@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
-
-if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI not defined");
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: { conn: mongoose.Connection | null; promise: Promise<mongoose.Connection> | null };
 }
 
 let cached = global.mongoose;
@@ -13,12 +12,18 @@ if (!cached) {
 }
 
 export async function connectDB() {
+  const MONGODB_URI = process.env.MONGODB_URI;
+
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI not defined");
+  }
+
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
       bufferCommands: false,
-    });
+    }).then((m) => m.connection);
   }
 
   cached.conn = await cached.promise;
