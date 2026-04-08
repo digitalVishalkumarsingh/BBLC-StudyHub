@@ -566,7 +566,7 @@
 
 
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from 'next/navigation';
 import Image from "next/image";
 import { 
@@ -588,7 +588,7 @@ declare global {
   }
 }
 
-export default function UnifiedPaymentPage() {
+function UnifiedPaymentContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [formdata, setFormdata] = useState({
@@ -1308,5 +1308,13 @@ export default function UnifiedPaymentPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function UnifiedPaymentPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div></div>}>
+      <UnifiedPaymentContent />
+    </Suspense>
   );
 }
