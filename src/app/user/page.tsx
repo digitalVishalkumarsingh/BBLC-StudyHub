@@ -1,3 +1,9 @@
+import { redirect } from 'next/navigation';
+
+export default function UserPage() {
+  redirect('/user/dashboard');
+}
+
 // 'use client';
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
