@@ -100,7 +100,7 @@ NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxxxx
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open https://bblc-studyhub.vercel.app/ in your browser.
 
 ---
 
@@ -147,7 +147,7 @@ BBLC-StudyHub/
 ## 🌐 Deployment on Vercel
 
 1. Push your code to GitHub
-2. Import the repository at [vercel.com](https://vercel.com)
+2. Import the repository at ("https://bblc-studyhub.vercel.app/")
 3. Add all environment variables under **Project → Settings → Environment Variables**
 4. Click **Deploy** ✅
 
